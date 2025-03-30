@@ -13,6 +13,54 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  font-family: 'Macondo', cursive;
+  font-weight: 400;
+  font-style: normal;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+#hero-form > * {
+  margin-top: 1rem;
+}
+
+#hero-form fieldset {
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+#hero-form fieldset label {
+  display: block;
+}
+
+#hero-form fieldset label + label {
+  margin-top: 1rem;
+}
+
+#hero-form fieldset input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+#hero-form button[type='submit'] {
+  width: 100%;
+  padding: 0.25rem;
+  font-size: large;
+  cursor: pointer;
+}
+
 #modal {
   display: none;
   position: absolute;
@@ -20,6 +68,7 @@ html {
   right: 0;
   bottom: 0;
   left: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 #modal.visible {
@@ -29,5 +78,24 @@ html {
 }
 
 #modal > #modal-content {
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  text-align: center;
+  background: white;
+}
+
+#modal > #modal-content > .centered-content {
   position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#modal > #modal-content .display-text {
+  display: block;
+  margin: 1rem auto;
+  font-size: 2rem;
 }

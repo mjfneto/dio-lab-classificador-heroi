@@ -31,7 +31,14 @@ heroForm.addEventListener('submit', function (event) {
     'beforeend',
     `
         <div id="modal-content">
-            <p>O Herói de nome <strong>${hero}</strong> está no nível de <strong>${lvl}</strong></p>
+            <div class="centered-content">
+                <p>O herói de nome 
+                <strong class="display-text">${hero}</strong>
+                está no nível:
+                <strong class="display-text">${lvl}</strong>
+                </p>
+                
+            </div>
         </div>
     `
   )
