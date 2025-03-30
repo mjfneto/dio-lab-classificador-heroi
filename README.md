@@ -27,6 +27,6 @@ O objetivo deste projeto é demonstrar a aplicação de conceitos básicos de pr
 Para executar o projeto, siga as instruções abaixo:
 
 1.  Clone o repositório para o seu computador.
-2.  Abra o arquivo do projeto (`index.html`).
+2.  Abra o arquivo do projeto (`index.html`) no navegador de sua preferência.
 3.  Siga as instruções para inserir o nome do herói e sua quantidade de XP.
 4.  O programa exibirá o nome do herói e seu respectivo nível.
