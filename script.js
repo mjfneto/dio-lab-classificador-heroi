@@ -59,7 +59,6 @@ heroForm.addEventListener('submit', function (event) {
                   está no nível
                   <strong class="display-text">${lvl}</strong>
                   </p>
-                  
               </div>
           </div>
       `
