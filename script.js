@@ -34,7 +34,7 @@ heroForm.addEventListener('submit', function (event) {
             <div class="centered-content">
                 <p>O herói de nome 
                 <strong class="display-text">${hero}</strong>
-                está no nível:
+                está no nível
                 <strong class="display-text">${lvl}</strong>
                 </p>
                 
