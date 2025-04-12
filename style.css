@@ -130,8 +130,9 @@ h1 {
 
 #modal > #modal-content {
   position: absolute;
-  width: 75vw;
+  width: 70vw;
   height: 75vh;
+  max-width: 70ch;
   padding: 1rem;
   border-radius: 0.25rem;
   text-align: center;
