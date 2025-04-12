@@ -81,13 +81,14 @@ function closeModal() {
 
   modal.classList.remove('visible')
 
+  document
+    .getElementById('close-modal-btn')
+    .removeEventListener('click', closeModal)
+
   const modalContent = document.getElementById('modal-content')
   modalContent && modal.removeChild(modalContent)
 
   modal.removeEventListener('click', ifModalCloseModal)
-  document
-    .getElementById('close-modal-btn')
-    .removeEventListener('click', closeModal)
 }
 
 function ifModalCloseModal(event) {
