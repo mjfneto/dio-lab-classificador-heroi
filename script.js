@@ -54,21 +54,29 @@ heroForm.addEventListener('submit', function (event) {
       `
           <div id="modal-content">
               <div class="centered-content">
-                  <p>O herói de nome 
+                <p>O herói de nome 
                   <strong class="display-text">${hero}</strong>
                   está no nível
                   <strong class="display-text">${lvl}</strong>
-                  </p>
+                </p>
+                <button id="close-modal-btn" aria-label="Close modal">
+                  <img src="/assets/images/ChatGPT Image Apr 11, 2025, 09_05_08 PM.png" alt="" aria-hidden="true" />
+                  <span>🗙</span>
+                </button>
               </div>
           </div>
       `
     )
 
     modal.addEventListener('click', ifModalCloseModal)
+    document
+      .getElementById('close-modal-btn')
+      .addEventListener('click', closeModal)
   }, 1000)
 })
 
 function closeModal() {
+  fieldSet.disabled = false
   swordSlash.play()
 
   modal.classList.remove('visible')
@@ -77,9 +85,11 @@ function closeModal() {
   modalContent && modal.removeChild(modalContent)
 
   modal.removeEventListener('click', ifModalCloseModal)
+  document
+    .getElementById('close-modal-btn')
+    .removeEventListener('click', closeModal)
 }
 
 function ifModalCloseModal(event) {
-  fieldSet.disabled = false
   event.target.id == 'modal' && closeModal()
 }
