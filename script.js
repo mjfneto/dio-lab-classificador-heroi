@@ -1,10 +1,18 @@
-const heroForm = document.getElementById('hero-form')
-const fieldSet = heroForm.querySelector('fieldset')
-const modal = document.getElementById('modal')
 const shieldBlock = document.getElementById('shield-block')
 const swordClash = document.getElementById('sword-clash')
 const swordImpact = document.getElementById('sword-impact')
 const swordSlash = document.getElementById('sword-slash')
+
+const heroForm = document.getElementById('hero-form')
+const fieldSet = heroForm.querySelector('fieldset')
+
+const modal = document.getElementById('modal')
+const modalContent = document.getElementById('modal-content')
+const closeModalBtn = document.getElementById('close-modal-btn')
+const displayTextHero = document.getElementById('display-text-hero')
+const displayTextLvl = document.getElementById('display-text-lvl')
+
+closeModalBtn.addEventListener('click', closeModal)
 
 heroForm.addEventListener('submit', function (event) {
   event.preventDefault()
@@ -49,29 +57,11 @@ heroForm.addEventListener('submit', function (event) {
       swordClash.play()
     }
 
-    modal.insertAdjacentHTML(
-      'beforeend',
-      `
-          <div id="modal-content">
-              <div class="centered-content">
-                <p>O herói de nome 
-                  <strong class="display-text">${hero}</strong>
-                  está no nível
-                  <strong class="display-text">${lvl}</strong>
-                </p>
-                <button id="close-modal-btn" aria-label="Close modal">
-                  <img src="/assets/images/ChatGPT Image Apr 11, 2025, 09_05_08 PM.png" alt="" aria-hidden="true" />
-                  <span>🗙</span>
-                </button>
-              </div>
-          </div>
-      `
-    )
+    displayTextHero.textContent = hero
+    displayTextLvl.textContent = lvl
 
+    modalContent.classList.add('visible')
     modal.addEventListener('click', ifModalCloseModal)
-    document
-      .getElementById('close-modal-btn')
-      .addEventListener('click', closeModal)
   }, 1000)
 })
 
@@ -80,13 +70,7 @@ function closeModal() {
   swordSlash.play()
 
   modal.classList.remove('visible')
-
-  document
-    .getElementById('close-modal-btn')
-    .removeEventListener('click', closeModal)
-
-  const modalContent = document.getElementById('modal-content')
-  modalContent && modal.removeChild(modalContent)
+  modalContent.classList.remove('visible')
 
   modal.removeEventListener('click', ifModalCloseModal)
 }

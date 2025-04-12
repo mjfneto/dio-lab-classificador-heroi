@@ -129,6 +129,7 @@ h1 {
 }
 
 #modal > #modal-content {
+  display: none;
   position: absolute;
   width: 70vw;
   height: 75vh;
@@ -141,6 +142,10 @@ h1 {
     center/cover no-repeat;
   box-shadow: inset 0 0 6rem #222, 0 0 1rem #222;
   color: goldenrod;
+}
+
+#modal > #modal-content.visible {
+  display: block;
 }
 
 #modal > #modal-content > .centered-content {
