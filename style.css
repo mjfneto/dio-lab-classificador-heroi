@@ -185,7 +185,7 @@ h1 {
   transition: color, text-shadow 0.25s ease-in;
 }
 
-#modal > #modal-content img {
+#modal > #modal-content #close-modal-btn img {
   max-width: 100%;
 }
 
