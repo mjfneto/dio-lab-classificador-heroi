@@ -64,6 +64,10 @@ button {
   text-shadow: 0 0 4px gold;
 }
 
+.shadowed-btn {
+  filter: drop-shadow(2px 2px 4px #222);
+}
+
 main {
   max-width: 40ch;
   margin: 0 1rem;
