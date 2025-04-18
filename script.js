@@ -1,3 +1,4 @@
+const bladeDraw = document.getElementById('blade-draw')
 const shieldBlock = document.getElementById('shield-block')
 const swordClash = document.getElementById('sword-clash')
 const swordImpact = document.getElementById('sword-impact')
@@ -5,12 +6,18 @@ const swordSlash = document.getElementById('sword-slash')
 
 const heroForm = document.getElementById('hero-form')
 const fieldSet = heroForm.querySelector('fieldset')
+const heroInput = document.getElementById('hero')
+const xpInput = document.getElementById('xp')
+const mainBtn = document.getElementById('main-btn')
 
 const modal = document.getElementById('modal')
 const modalContent = document.getElementById('modal-content')
 const closeModalBtn = document.getElementById('close-modal-btn')
 const displayTextHero = document.getElementById('display-text-hero')
 const displayTextLvl = document.getElementById('display-text-lvl')
+
+let heroFormStillValid = heroForm.checkValidity()
+reactToHeroFormValidity()
 
 closeModalBtn.addEventListener('click', closeModal)
 
@@ -64,6 +71,26 @@ heroForm.addEventListener('submit', function (event) {
     modal.addEventListener('click', ifModalCloseModal)
   }, 1000)
 })
+
+heroForm.addEventListener('input', reactToHeroFormValidity)
+
+function reactToHeroFormValidity() {
+  const formValid = heroForm.checkValidity()
+
+  if (formValid) {
+    if (!heroFormStillValid) {
+      bladeDraw.play()
+    }
+
+    mainBtn.classList.add('valid')
+
+    heroFormStillValid = true
+  } else {
+    mainBtn.classList.remove('valid')
+
+    heroFormStillValid = false
+  }
+}
 
 function closeModal() {
   fieldSet.disabled = false
