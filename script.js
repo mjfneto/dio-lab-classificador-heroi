@@ -11,6 +11,7 @@ const xpInput = document.getElementById('xp')
 const mainBtn = document.getElementById('main-btn')
 
 const modal = document.getElementById('modal')
+const modalBackdrop = modal.querySelector('.modal-backdrop')
 const modalContent = document.getElementById('modal-content')
 const closeModalBtn = document.getElementById('close-modal-btn')
 const displayTextHero = document.getElementById('display-text-hero')
@@ -18,8 +19,6 @@ const displayTextLvl = document.getElementById('display-text-lvl')
 
 let heroFormStillValid = heroForm.checkValidity()
 reactToHeroFormValidity()
-
-closeModalBtn.addEventListener('click', closeModal)
 
 heroForm.addEventListener('submit', function (event) {
   event.preventDefault()
@@ -47,9 +46,9 @@ heroForm.addEventListener('submit', function (event) {
     lvl = 'Radiante'
   }
 
-  fieldSet.disabled = true
-
-  modal.classList.add('visible')
+  displayTextHero.textContent = hero
+  displayTextLvl.textContent = lvl
+  openModal()
 
   setTimeout(function () {
     if (lvl === 'Ferro' || lvl === 'Bronze') {
@@ -64,15 +63,55 @@ heroForm.addEventListener('submit', function (event) {
       swordClash.play()
     }
 
-    displayTextHero.textContent = hero
-    displayTextLvl.textContent = lvl
-
-    modalContent.classList.add('visible')
-    modal.addEventListener('click', ifModalCloseModal)
+    displayTextLvl.classList.add('visible')
   }, 1000)
 })
 
 heroForm.addEventListener('input', reactToHeroFormValidity)
+
+function openModal() {
+  fieldSet.disabled = true
+
+  modal.classList.add('visible')
+
+  modalContent.classList.add('opening')
+
+  setTimeout(() => {
+    modalContent.classList.remove('opening')
+
+    document.body.classList.add('modal-open')
+
+    modal.addEventListener('click', ifBackdropCloseModal)
+    closeModalBtn.addEventListener('click', closeModal)
+  }, 300)
+}
+
+function closeModal() {
+  swordSlash.play()
+
+  fieldSet.disabled = false
+
+  modalContent.classList.add('closing')
+
+  setTimeout(() => {
+    modalContent.classList.remove('closing')
+
+    modal.classList.remove('visible')
+
+    closeModalBtn.removeEventListener('click', closeModal)
+    modal.removeEventListener('click', ifBackdropCloseModal)
+
+    document.body.classList.remove('modal-open')
+
+    displayTextHero.textContent = ''
+    displayTextLvl.textContent = ''
+    displayTextLvl.classList.remove('visible')
+  }, 300)
+}
+
+function ifBackdropCloseModal(event) {
+  event.target === modalBackdrop && closeModal()
+}
 
 function reactToHeroFormValidity() {
   const formValid = heroForm.checkValidity()
@@ -90,18 +129,4 @@ function reactToHeroFormValidity() {
 
     heroFormStillValid = false
   }
-}
-
-function closeModal() {
-  fieldSet.disabled = false
-  swordSlash.play()
-
-  modal.classList.remove('visible')
-  modalContent.classList.remove('visible')
-
-  modal.removeEventListener('click', ifModalCloseModal)
-}
-
-function ifModalCloseModal(event) {
-  event.target.id == 'modal' && closeModal()
 }
